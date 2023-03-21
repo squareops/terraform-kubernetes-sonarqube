@@ -20,7 +20,7 @@ resource "kubernetes_namespace" "sonarqube" {
 resource "helm_release" "sonarqube" {
   depends_on = [kubernetes_namespace.sonarqube]
 
-  name       = "sonarqube-test"
+  name       = "sonarqube"
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   chart      = "sonarqube-lts"
   namespace  = var.namespace
