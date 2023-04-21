@@ -1,17 +1,6 @@
-
-output "password" {
-  value       = module.sonarqube.sonarqube_password
-  description = "Initial password for sonarqube"
-}
-
-output "username" {
-  value       = "admin"
-  description = "Initial username for sonarqube"
-}
-
-output "hostname" {
-  value       = module.sonarqube.sonarqube_hostname
-  description = "URL for sonarqube"
+output "sonarqube" {
+  description = "Sonarqube_Info"
+  value       = module.sonarqube.sonarqube
 }
 
 output "postgresql_password" {
