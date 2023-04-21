@@ -38,9 +38,7 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_hostname"></a> [hostname](#output\_hostname) | URL for sonarqube |
-| <a name="output_password"></a> [password](#output\_password) | Initial password for sonarqube |
 | <a name="output_postgresql_password"></a> [postgresql\_password](#output\_postgresql\_password) | password for postgresql deployed with sonarqube |
 | <a name="output_postgresql_username"></a> [postgresql\_username](#output\_postgresql\_username) | username for postgresql deployed with sonarqube |
-| <a name="output_username"></a> [username](#output\_username) | Initial username for sonarqube |
+| <a name="output_sonarqube"></a> [sonarqube](#output\_sonarqube) | Sonarqube\_Info |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -2,13 +2,13 @@ variable "sonarqube_config" {
   type = any
   default = {
     hostname                       = ""
-    enable_grafana_monitoring      = true
-    sonarqube_volume_size          = ""
+    values_yaml                    = ""
     storage_class_name             = ""
+    sonarqube_volume_size          = ""
+    postgresql_volume_size         = ""
+    grafana_monitoring_enabled     = false
     postgresql_password_external   = ""
     postgresql_external_server_url = ""
-    postgresql_volume_size         = ""
-    values_yaml                    = ""
   }
   description = "Sonarqube configurations"
 }
