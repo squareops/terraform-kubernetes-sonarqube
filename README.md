@@ -71,17 +71,15 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Enter chart version of application | `string` | `"1.0.30"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Enter namespace name | `string` | `"sonarqube"` | no |
-| <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Sonarqube configurations | `any` | <pre>{<br>  "enable_grafana_monitoring": true,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
+| <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Sonarqube configurations | `any` | <pre>{<br>  "grafana_monitoring_enabled": false,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_sonarqube_hostname"></a> [sonarqube\_hostname](#output\_sonarqube\_hostname) | URL for sonarqube |
-| <a name="output_sonarqube_password"></a> [sonarqube\_password](#output\_sonarqube\_password) | Initial password for sonarqube |
+| <a name="output_sonarqube"></a> [sonarqube](#output\_sonarqube) | Sonarqube\_Info |
 | <a name="output_sonarqube_postgresql_password"></a> [sonarqube\_postgresql\_password](#output\_sonarqube\_postgresql\_password) | password for postgresql deployed with sonarqube |
 | <a name="output_sonarqube_postgresql_username"></a> [sonarqube\_postgresql\_username](#output\_sonarqube\_postgresql\_username) | username for postgresql deployed with sonarqube |
-| <a name="output_sonarqube_username"></a> [sonarqube\_username](#output\_sonarqube\_username) | Initial username for sonarqube |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Contribution & Issue Reporting

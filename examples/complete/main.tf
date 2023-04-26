@@ -9,13 +9,13 @@ locals {
 module "sonarqube" {
   source = "../../"
   sonarqube_config = {
-    hostname                       = "sonarqubesquareops.in"
-    enable_grafana_monitoring      = false
-    sonarqube_volume_size          = "5Gi"
+    hostname                       = "sonarqube.ref.dev.skaf.squareops.in"
+    values_yaml                    = file("./helm/values.yaml")
     storage_class_name             = "gp2"
+    sonarqube_volume_size          = "5Gi"
+    postgresql_volume_size         = "20Gi"
+    grafana_monitoring_enabled     = false
     postgresql_password_external   = ""
     postgresql_external_server_url = ""
-    postgresql_volume_size         = "20Gi"
-    values_yaml                    = file("./helm/values.yaml")
   }
 }
