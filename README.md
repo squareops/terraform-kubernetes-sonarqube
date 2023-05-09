@@ -42,9 +42,9 @@ The required IAM permissions to create resources from this module can be found [
 
 ## Supported Versions Table:
 
-| Resources             |  Helm Chart Version           |     K8s supported version   |      
-| :-----:              | :-----:                       |         :---         | 
-| Sonarqube       | **1.0.30**          |    1.23,1.24,1.25      |
+|  Sonarqube Helm Chart Version           |     K8s supported version   |      
+| :-----:                       |         :---         | 
+| **1.0.30**          |    1.23,1.24,1.25      |
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
