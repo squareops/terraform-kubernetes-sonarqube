@@ -9,11 +9,11 @@ output "sonarqube" {
 
 output "sonarqube_postgresql_password" {
   value       = random_password.postgresql_password.result
-  description = "password for postgresql deployed with sonarqube"
+  description = "Password for the PostgreSQL database deployed with SonarQube"
   sensitive   = true
 }
 
 output "sonarqube_postgresql_username" {
   value       = "sonarUser"
-  description = "username for postgresql deployed with sonarqube"
+  description = "Username for the PostgreSQL database deployed with SonarQube"
 }

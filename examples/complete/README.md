@@ -21,7 +21,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | ../../ | n/a |
+| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | https://github.com/sq-ia/terraform-kubernetes-sonarqube.git | n/a |
 
 ## Resources
 
@@ -38,7 +38,7 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_postgresql_password"></a> [postgresql\_password](#output\_postgresql\_password) | password for postgresql deployed with sonarqube |
-| <a name="output_postgresql_username"></a> [postgresql\_username](#output\_postgresql\_username) | username for postgresql deployed with sonarqube |
+| <a name="output_postgresql_password"></a> [postgresql\_password](#output\_postgresql\_password) | Password for the PostgreSQL database deployed with SonarQube |
+| <a name="output_postgresql_username"></a> [postgresql\_username](#output\_postgresql\_username) | Username for the PostgreSQL database deployed with SonarQube |
 | <a name="output_sonarqube"></a> [sonarqube](#output\_sonarqube) | Sonarqube\_Info |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
