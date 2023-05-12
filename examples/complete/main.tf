@@ -1,15 +1,18 @@
 locals {
-  region = "us-east-2"
+  name        = "sonarqube"
+  region      = "us-east-2"
+  environment = "prod"
   additional_tags = {
-    Name        = "skaf"
-    environment = "prod"
+    Owner      = "organization_name"
+    Expires    = "Never"
+    Department = "Engineering"
   }
 }
 
 module "sonarqube" {
-  source = "../../"
+  source           = "https://github.com/sq-ia/terraform-kubernetes-sonarqube.git"
   sonarqube_config = {
-    hostname                       = "sonarqube.ref.dev.skaf.squareops.in"
+    hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
     storage_class_name             = "gp2"
     sonarqube_volume_size          = "5Gi"
