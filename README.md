@@ -8,7 +8,7 @@
 <br>
 The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an open-source tool that provides continuous code quality management to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities. This module uses Kubernetes manifests to deploy Sonarqube along with a PostgreSQL database. It allows for easy configuration of the Sonarqube instance through the use of Terraform variables.
 
-## Supported Versions Table:
+## Supported Versions:
 
 |  Sonarqube Helm Chart Version           |     K8s supported version   |  
 | :-----:                       |         :---         |
