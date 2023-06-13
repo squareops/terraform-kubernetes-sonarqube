@@ -13,6 +13,9 @@ resource "random_password" "postgresql_password" {
 resource "kubernetes_namespace" "sonarqube" {
   metadata {
     name = var.namespace
+    labels = {
+      "pod-security.kubernetes.io/warn" = "restricted"
+    }
   }
 }
 
