@@ -10,9 +10,9 @@ The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an
 
 ## Supported Versions:
 
-|  Sonarqube Helm Chart Version           |     K8s supported version   |  
+|  Sonarqube Helm Chart Version           |     K8s supported version (EKS, AKS & GKE)  |  
 | :-----:                       |         :---         |
-| **1.0.30**          |    **1.23,1.24,1.25**      |
+| **1.0.30**          |    **1.23,1.24,1.25,1.26,1.27**      |
 
 
 ## Usage Example
@@ -32,7 +32,9 @@ module "sonarqube" {
 }
 
 ```
-Refer [examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete) for more details.
+- Refer [AWS examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/aws) for more details.
+- Refer [Azure examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/azure) for more details.
+- Refer [GCP examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/gcp) for more details.
 
 ## IAM Permissions
 The required IAM permissions to create resources from this module can be found [here](https://github.com/sq-ia/terraform-kubernetes-sonarqube/blob/main/IAM.md)
@@ -45,7 +47,7 @@ The required IAM permissions to create resources from this module can be found [
   5. To deploy Prometheus/Grafana, please follow the installation instructions for each tool in their respective documentation.
   6. Once Prometheus and Grafana are deployed, the exporter can be configured to scrape metrics data from your application or system and send it to Prometheus.
   7. Finally, you can use Grafana to create custom dashboards and visualize the metrics data collected by Prometheus.
-  8. This module is compatible with EKS version 1.23, which is great news for users deploying the module on an EKS cluster running that version. Review the module's documentation, meet specific configuration requirements, and test thoroughly after deployment to ensure everything works as expected.
+  8. This module is compatible with EKS, AKS & GKE which is great news for users deploying the module on an AWS, Azure & GCP cloud. Review the module's documentation, meet specific configuration requirements, and test thoroughly after deployment to ensure everything works as expected.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
