@@ -22,5 +22,17 @@ variable "chart_version" {
 variable "namespace" {
   type        = string
   default     = "sonarqube"
-  description = "Name of the Kubernetes namespace where the Jenkins deployment will be deployed."
+  description = "Name of the Kubernetes namespace where Jenkins will be deployed."
+}
+
+variable "sonarqube_passwd_length" {
+  type        = number
+  default     = 20
+  description = "Length of the password for sonarqube"
+}
+
+variable "postgresql_passwd_length" {
+  type        = number
+  default     = 20
+  description = "Length of the password for postgresql"
 }
