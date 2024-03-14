@@ -2,11 +2,11 @@ locals {
   count = var.sonarqube_config.postgresql_external_server_url != "" ? [] : [1]
 }
 resource "random_password" "sonarqube_password" {
-  length  = 20
+  length  = var.sonarqube_passwd_length
   special = false
 }
 resource "random_password" "postgresql_password" {
-  length  = 20
+  length  = var.postgresql_passwd_length
   special = false
 }
 
@@ -21,7 +21,7 @@ resource "helm_release" "sonarqube" {
   name       = "sonarqube"
   chart      = "sonarqube-lts"
   timeout    = 600
-  version    = var.chart_version
+  version    = var.helm_chart_version
   namespace  = var.namespace
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
