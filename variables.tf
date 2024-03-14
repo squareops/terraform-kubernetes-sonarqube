@@ -13,7 +13,7 @@ variable "sonarqube_config" {
   description = "Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values."
 }
 
-variable "chart_version" {
+variable "helm_chart_version" {
   type        = string
   default     = "1.0.30"
   description = "Version of the Jenkins chart that will be used to deploy Jenkins application."

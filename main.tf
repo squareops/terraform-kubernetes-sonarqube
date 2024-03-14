@@ -21,7 +21,7 @@ resource "helm_release" "sonarqube" {
   name       = "sonarqube"
   chart      = "sonarqube-lts"
   timeout    = 600
-  version    = var.chart_version
+  version    = var.helm_chart_version
   namespace  = var.namespace
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
