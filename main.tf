@@ -19,9 +19,9 @@ resource "kubernetes_namespace" "sonarqube" {
 resource "helm_release" "sonarqube" {
   depends_on = [kubernetes_namespace.sonarqube]
   name       = "sonarqube"
-  chart      = "sonarqube-lts"
+  chart      = "sonarqube"
   timeout    = 600
-  version    = var.chart_version
+  version    = var.helm_chart_version
   namespace  = var.namespace
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
