@@ -1,6 +1,6 @@
 locals {
   name        = "sonarqube"
-  region      = "us-east-1"
+  region      = "us-east-2"
   environment = "prod"
   additional_tags = {
     Owner      = "organization_name"

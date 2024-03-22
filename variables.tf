@@ -15,7 +15,7 @@ variable "sonarqube_config" {
 
 variable "helm_chart_version" {
   type        = string
-  default     = "10.4.0"
+  default     = "10.4.1"
   description = "Version of the Sonarqube chart that will be used to deploy Sonarqube application."
 }
 
