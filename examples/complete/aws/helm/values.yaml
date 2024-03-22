@@ -5,3 +5,13 @@ resources:
   requests:
     cpu: 100m
     memory: 1.75Gi
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+          - key: "Addons-Services"
+            operator: In
+            values:
+            - "true"
