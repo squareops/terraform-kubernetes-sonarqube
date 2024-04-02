@@ -12,7 +12,7 @@ The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an
 
 |  Sonarqube Helm Chart Version           |     K8s supported version (EKS, AKS & GKE)  |  
 | :-----:                       |         :---         |
-| **1.0.30**          |    **1.23,1.24,1.25,1.26,1.27**      |
+| **10.4.1**          |    **1.23,1.24,1.25,1.26,1.27,1,28**      |
 
 
 ## Usage Example
