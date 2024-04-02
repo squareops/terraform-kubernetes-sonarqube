@@ -82,9 +82,9 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_helm_chart_version"></a> [helm\_chart\_version](#input\_helm\_chart\_version) | Version of the Sonarqube chart that will be used to deploy Sonarqube application. | `string` | `"10.4.1"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Name of the Kubernetes namespace where Sonarqube will be deployed. | `string` | `"sonarqube"` | no |
-| <a name="input_postgresql_passwd_length"></a> [postgresql\_passwd\_length](#input\_postgresql\_passwd\_length) | Length of the password for postgresql | `number` | `20` | no |
+| <a name="input_postgresql_password_length"></a> [postgresql\_password\_length](#input\_postgresql\_password\_length) | Length of the password for postgresql | `number` | `20` | no |
 | <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values. | `any` | <pre>{<br>  "grafana_monitoring_enabled": false,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
-| <a name="input_sonarqube_passwd_length"></a> [sonarqube\_passwd\_length](#input\_sonarqube\_passwd\_length) | Length of the password for sonarqube | `number` | `20` | no |
+| <a name="input_sonarqube_password_length"></a> [sonarqube\_password\_length](#input\_sonarqube\_password\_length) | Length of the password for sonarqube | `number` | `20` | no |
 
 ## Outputs
 

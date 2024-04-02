@@ -25,13 +25,13 @@ variable "namespace" {
   description = "Name of the Kubernetes namespace where Sonarqube will be deployed."
 }
 
-variable "sonarqube_passwd_length" {
+variable "sonarqube_password_length" {
   type        = number
   default     = 20
   description = "Length of the password for sonarqube"
 }
 
-variable "postgresql_passwd_length" {
+variable "postgresql_password_length" {
   type        = number
   default     = 20
   description = "Length of the password for postgresql"

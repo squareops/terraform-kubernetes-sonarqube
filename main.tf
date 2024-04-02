@@ -2,11 +2,11 @@ locals {
   count = var.sonarqube_config.postgresql_external_server_url != "" ? [] : [1]
 }
 resource "random_password" "sonarqube_password" {
-  length  = var.sonarqube_passwd_length
+  length  = var.sonarqube_password_length
   special = false
 }
 resource "random_password" "postgresql_password" {
-  length  = var.postgresql_passwd_length
+  length  = var.postgresql_password_length
   special = false
 }
 
