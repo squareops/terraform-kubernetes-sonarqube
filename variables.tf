@@ -1,3 +1,9 @@
+variable "additional_aws_tags" {
+  description = "Additional tags to be applied to resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "sonarqube_config" {
   type = any
   default = {
