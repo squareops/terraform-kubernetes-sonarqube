@@ -1,3 +1,9 @@
+variable "additional_aws_tags" {
+  description = "Additional tags to be applied to resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "sonarqube_config" {
   type = any
   default = {
@@ -13,14 +19,26 @@ variable "sonarqube_config" {
   description = "Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values."
 }
 
-variable "chart_version" {
+variable "helm_chart_version" {
   type        = string
-  default     = "1.0.30"
-  description = "Version of the Jenkins chart that will be used to deploy Jenkins application."
+  default     = "10.4.1"
+  description = "Version of the Sonarqube chart that will be used to deploy Sonarqube application."
 }
 
 variable "namespace" {
   type        = string
   default     = "sonarqube"
-  description = "Name of the Kubernetes namespace where the Jenkins deployment will be deployed."
+  description = "Name of the Kubernetes namespace where Sonarqube will be deployed."
+}
+
+variable "sonarqube_password_length" {
+  type        = number
+  default     = 20
+  description = "Length of the password for sonarqube"
+}
+
+variable "postgresql_password_length" {
+  type        = number
+  default     = 20
+  description = "Length of the password for postgresql"
 }
