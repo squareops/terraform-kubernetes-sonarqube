@@ -12,7 +12,7 @@ The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an
 
 |  Sonarqube Helm Chart Version           |     K8s supported version (EKS, AKS & GKE)  |  
 | :-----:                       |         :---         |
-| **1.0.30**          |    **1.23,1.24,1.25,1.26,1.27**      |
+| **2.0.0**          |    **1.23,1.24,1.25,1.26,1.27**      |
 
 
 ## Usage Example
@@ -79,7 +79,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"1.0.30"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"2.0.0"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Name of the Kubernetes namespace where the Jenkins deployment will be deployed. | `string` | `"sonarqube"` | no |
 | <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values. | `any` | <pre>{<br>  "grafana_monitoring_enabled": false,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
 
