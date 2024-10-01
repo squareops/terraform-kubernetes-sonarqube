@@ -12,32 +12,32 @@ The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an
 
 |  Sonarqube Helm Chart Version           |     K8s supported version (EKS, AKS & GKE)  |  
 | :-----:                       |         :---         |
-| **1.0.30**          |    **1.23,1.24,1.25,1.26,1.27**      |
+| **1.0.30**          |    **1.23,1.24,1.25,1.26,1.27,1.28,1.29,1.30**      |
 
 
 ## Usage Example
 
 ```hcl
 module "sonarqube" {
-  source = "https://github.com/sq-ia/terraform-kubernetes-sonarqube.git"
+  source = "https://github.com/squareops/terraform-kubernetes-sonarqube.git"
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
-    exporter_enable                = false
-    sonarqube_volume_size          = "5Gi"
+    values_yaml                    = file("./helm/values.yaml")
     storage_class_name             = "gp2"
+    sonarqube_volume_size          = "5Gi"
+    postgresql_volume_size         = "20Gi"
+    grafana_monitoring_enabled     = false
     postgresql_password_external   = ""
     postgresql_external_server_url = ""
-    postgresql_volume_size         = "20Gi"
   }
 }
-
 ```
-- Refer [AWS examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/aws) for more details.
-- Refer [Azure examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/azure) for more details.
-- Refer [GCP examples](https://github.com/sq-ia/terraform-kubernetes-sonarqube/tree/main/examples/complete/gcp) for more details.
+- Refer [AWS examples](https://github.com/squareops/terraform-kubernetes-sonarqube/tree/main/examples/complete/aws) for more details.
+- Refer [Azure examples](https://github.com/squareops/terraform-kubernetes-sonarqube/tree/main/examples/complete/azure) for more details.
+- Refer [GCP examples](https://github.com/squareops/terraform-kubernetes-sonarqube/tree/main/examples/complete/gcp) for more details.
 
 ## IAM Permissions
-The required IAM permissions to create resources from this module can be found [here](https://github.com/sq-ia/terraform-kubernetes-sonarqube/blob/main/IAM.md)
+The required IAM permissions to create resources from this module can be found [here](https://github.com/squareops/terraform-kubernetes-sonarqube/blob/main/IAM.md)
 
 ## Important Notes
   1. In order to enable the exporter, it is required to deploy Prometheus/Grafana first.
@@ -79,7 +79,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"1.0.30"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"10.6.1"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Name of the Kubernetes namespace where the Jenkins deployment will be deployed. | `string` | `"sonarqube"` | no |
 | <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values. | `any` | <pre>{<br>  "grafana_monitoring_enabled": false,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
 
@@ -87,7 +87,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_sonarqube"></a> [sonarqube](#output\_sonarqube) | Sonarqube\_Info |
+| <a name="output_sonarqube"></a> [sonarqube](#output\_sonarqube) | Sonarqube Credentials |
 | <a name="output_sonarqube_postgresql_password"></a> [sonarqube\_postgresql\_password](#output\_sonarqube\_postgresql\_password) | Password for the PostgreSQL database deployed with SonarQube |
 | <a name="output_sonarqube_postgresql_username"></a> [sonarqube\_postgresql\_username](#output\_sonarqube\_postgresql\_username) | Username for the PostgreSQL database deployed with SonarQube |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -96,7 +96,7 @@ No modules.
 
 To report an issue with a project:
 
-  1. Check the repository's [issue tracker](https://github.com/sq-ia/terraform-kubernetes-sonarqube/issues) on GitHub
+  1. Check the repository's [issue tracker](https://github.com/squareops/terraform-kubernetes-sonarqube/issues) on GitHub
   2. Search to see if the issue has already been reported
   3. If you can't find an answer to your question in the documentation or issue tracker, you can ask a question by creating a new issue. Be sure to provide enough context and details so others can understand your problem.
 
@@ -108,7 +108,7 @@ Apache License, Version 2.0, January 2004 (http://www.apache.org/licenses/).
 
 To support a GitHub project by liking it, you can follow these steps:
 
-  1. Visit the repository: Navigate to the [GitHub repository](https://github.com/sq-ia/terraform-kubernetes-sonarqube).
+  1. Visit the repository: Navigate to the [GitHub repository](https://github.com/squareops/terraform-kubernetes-sonarqube).
 
   2. Click the "Star" button: On the repository page, you'll see a "Star" button in the upper right corner. Clicking on it will star the repository, indicating your support for the project.
 
