@@ -1,5 +1,5 @@
 output "sonarqube" {
-  description = "Sonarqube_Info"
+  description = "Sonarqube Credentials "
   value = {
     username = "admin",
     password = nonsensitive(random_password.sonarqube_password.result),

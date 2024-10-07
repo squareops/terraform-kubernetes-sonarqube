@@ -23,7 +23,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | https://github.com/sq-ia/terraform-kubernetes-sonarqube.git | n/a |
+| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | https://github.com/squareops/terraform-kubernetes-sonarqube.git | n/a |
 
 ## Resources
 
