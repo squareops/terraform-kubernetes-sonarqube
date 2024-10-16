@@ -1,6 +1,6 @@
 locals {
   name        = "sonarqube"
-  region      = "eastus"
+  region      = ""
   environment = "prod"
   additional_tags = {
     Owner      = "organization_name"
@@ -10,7 +10,7 @@ locals {
 }
 
 module "sonarqube" {
-  source           = "git::https://github.com/squareops/terraform-kubernetes-sonarqube.git"
+  source           = "../../../"
   sonarqube_config = {
     hostname                       = "sonarqube.skaf.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
