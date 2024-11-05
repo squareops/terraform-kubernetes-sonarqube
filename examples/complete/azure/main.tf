@@ -10,7 +10,8 @@ locals {
 }
 
 module "sonarqube" {
-  source           = "git::https://github.com/squareops/terraform-kubernetes-sonarqube.git"
+  source  = "squareops/sonarqube/kubernetes"
+  version = "3.0.1"
   sonarqube_config = {
     hostname                       = "sonarqube.skaf.squareops.in"
     values_yaml                    = file("./helm/values.yaml")

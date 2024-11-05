@@ -50,7 +50,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | git::https://github.com/squareops/terraform-kubernetes-sonarqube.git | n/a |
+| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | squareops/sonarqube/kubernetes | 3.0.1 |
 
 ## Resources
 
