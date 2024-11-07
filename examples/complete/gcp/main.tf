@@ -10,7 +10,8 @@ locals {
 }
 
 module "sonarqube" {
-  source           = "../../../"
+  source           = "squareops/sonarqube/kubernetes"
+  version          = "3.0.1"
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
