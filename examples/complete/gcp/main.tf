@@ -1,6 +1,6 @@
 locals {
   name        = "sonarqube"
-  region      = "us-east-2"
+  region      = ""
   environment = "prod"
   additional_tags = {
     Owner      = "organization_name"
@@ -10,8 +10,8 @@ locals {
 }
 
 module "sonarqube" {
-  source  = "squareops/sonarqube/kubernetes"
-  version = "3.0.1"
+  source           = "squareops/sonarqube/kubernetes"
+  version          = "3.0.1"
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")

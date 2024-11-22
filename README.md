@@ -19,7 +19,8 @@ The module deploys a Sonarqube instance on a Kubernetes cluster. Sonarqube is an
 
 ```hcl
 module "sonarqube" {
-  source = "https://github.com/squareops/terraform-kubernetes-sonarqube.git"
+    source           = "squareops/sonarqube/kubernetes"
+    version          = "3.0.1"
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
