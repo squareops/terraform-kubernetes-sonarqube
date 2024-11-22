@@ -50,8 +50,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) |   squareops/sonarqube/kubernetes
- | n/a |
+| <a name="module_sonarqube"></a> [sonarqube](#module\_sonarqube) | squareops/sonarqube/kubernetes | 3.0.1 |
 
 ## Resources
 
