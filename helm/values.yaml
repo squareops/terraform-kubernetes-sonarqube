@@ -1,61 +1,19 @@
-resources:
-  limits:
-    cpu: 800m
-    memory: 4Gi
-  requests:
-    cpu: 100m
-    memory: 2Gi
 
-annotations:
-  co.elastic.logs/enabled: "true"
-
-persistence:
+community:
   enabled: true
-  storageClass: ${sonarqube_sc}
-  accessMode: ReadWriteOnce
-  size: ${volume_size}
-  uid: 1000
 
-ingress:
-  enabled: true
-  hosts:
-  - name: ${hostname}
+setAdminPassword:
+  newPassword: ${sonarqube_password}
+  currentPassword: ${sonarqube_current_password}
 
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
-
-  tls:
-    - secretName: sonarqube
-      hosts:
-      - ${hostname}
-
-affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-            - key: "Addons-Services"
-              operator: In
-              values:
-              - "true"
-
-account:
-  adminPassword: "${sonarqube_password}"
-
-prometheusExporter:
-  enabled: "${prometheus_exporter_enable}"
+monitoringPasscode: ${monitoringPasscode}
 
 postgresql:
-#   # Enable to deploy the PostgreSQL chart
   enabled: ${postgresql_enable}
   postgresqlPassword: "${postgresql_password}"
   persistence:
-    enabled: true
-    size: ${postgresql_disk_size}
     storageClass: ${sonarqube_sc}
+    size: 20Gi
   resources:
     limits:
       cpu: 200m
@@ -63,3 +21,52 @@ postgresql:
     requests:
       cpu: 100m
       memory: 200Mi
+
+persistence:
+  enabled: true
+  storageClass: ${sonarqube_sc}
+  accessMode: ReadWriteOnce
+  size: ${volume_size}
+  uid: 1000
+  guid: 0
+
+resources:
+  limits:
+    cpu: 800m
+    memory: 6144M
+    ephemeral-storage: 512000M
+  requests:
+    cpu: 400m
+    memory: 2048M
+    ephemeral-storage: 1536M
+
+
+annotations:
+  co.elastic.logs/enabled: "true"
+
+ingress:
+  enabled: true
+  hosts:
+    - name: ${hostname}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
+  tls:
+    - secretName: sonarqube
+      hosts:
+        - ${hostname}
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: "Addons-Services"
+              operator: In
+              values:
+                - "true"
+
+prometheusExporter:
+  enabled: "${prometheus_exporter_enable}"

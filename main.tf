@@ -3,13 +3,16 @@ locals {
 }
 resource "random_password" "sonarqube_password" {
   length  = 20
-  special = false
+  special = true
 }
 resource "random_password" "postgresql_password" {
   length  = 20
-  special = false
+  special = true
 }
-
+resource "random_password" "monitoringPasscode" {
+  length  = 20
+  special = true
+}
 resource "kubernetes_namespace" "sonarqube" {
   metadata {
     name = var.namespace
@@ -26,12 +29,14 @@ resource "helm_release" "sonarqube" {
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
     templatefile("${path.module}/helm/values.yaml", {
+      monitoringPasscode             = random_password.monitoringPasscode.result
       hostname                       = var.sonarqube_config.hostname
       volume_size                    = var.sonarqube_config.sonarqube_volume_size
       sonarqube_sc                   = var.sonarqube_config.storage_class_name
       postgresql_enable              = var.sonarqube_config.postgresql_external_server_url != "" ? false : true
       sonarqube_password             = random_password.sonarqube_password.result
-      postgresql_password            = random_password.postgresql_password.result
+      sonarqube_current_password     = var.sonarqube_config.sonarqube_current_password
+      postgresql_password            = var.sonarqube_config.postgresql_current_password != null ? var.sonarqube_config.postgresql_current_password : random_password.postgresql_password.result
       postgresql_disk_size           = var.sonarqube_config.postgresql_volume_size
       prometheus_exporter_enable     = var.sonarqube_config.grafana_monitoring_enabled
       postgresql_password_external   = var.sonarqube_config.postgresql_password_external
