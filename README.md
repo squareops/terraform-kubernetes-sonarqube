@@ -73,6 +73,7 @@ No modules.
 |------|------|
 | [helm_release.sonarqube](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_namespace.sonarqube](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [random_password.monitoringPasscode](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [random_password.postgresql_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [random_password.sonarqube_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 
@@ -80,9 +81,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"10.6.1"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Jenkins chart that will be used to deploy Jenkins application. | `string` | `"2025.2.0"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Name of the Kubernetes namespace where the Jenkins deployment will be deployed. | `string` | `"sonarqube"` | no |
-| <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values. | `any` | <pre>{<br>  "grafana_monitoring_enabled": false,<br>  "hostname": "",<br>  "postgresql_external_server_url": "",<br>  "postgresql_password_external": "",<br>  "postgresql_volume_size": "",<br>  "sonarqube_volume_size": "",<br>  "storage_class_name": "",<br>  "values_yaml": ""<br>}</pre> | no |
+| <a name="input_sonarqube_config"></a> [sonarqube\_config](#input\_sonarqube\_config) | Specify the configuration settings for Sonarqube, including the hostname, storage options, and custom YAML values. | `any` | <pre>{<br/>  "grafana_monitoring_enabled": false,<br/>  "hostname": "",<br/>  "postgresql_external_server_url": "",<br/>  "postgresql_password_external": "",<br/>  "postgresql_volume_size": "",<br/>  "sonarqube_volume_size": "",<br/>  "storage_class_name": "",<br/>  "values_yaml": ""<br/>}</pre> | no |
 
 ## Outputs
 

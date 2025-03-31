@@ -29,7 +29,7 @@ resource "helm_release" "sonarqube" {
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
     templatefile("${path.module}/helm/values.yaml", {
-      monitoringPasscode             = random_password.monitoringPasscode.result
+      monitoringPasscode             = var.sonarqube_config.monitoringPasscode != null ? var.sonarqube_config.monitoringPasscode : random_password.monitoringPasscode.result
       hostname                       = var.sonarqube_config.hostname
       volume_size                    = var.sonarqube_config.sonarqube_volume_size
       sonarqube_sc                   = var.sonarqube_config.storage_class_name
