@@ -61,27 +61,6 @@ resource "helm_release" "sonarqube" {
     }
   }
 }
-resource "kubernetes_manifest" "migration_apply" {
-  manifest = {
-    apiVersion = "v1"
-    kind       = "ConfigMap"
-    metadata = {
-      name      = "sonarqube-sidecar-script"
-      namespace = "sonarqube"
-    }
-    data = {
-      "db-migration-watcher.sh" = <<-EOT
-        #!/bin/bash
-        SONARQUBE_API="http://sonarqube-sonarqube:9000/api/system/migrate_db"
-
-        curl -s -X POST -u admin:"${var.sonarqube_config.sonarqube_current_password}" "$SONARQUBE_API"
-
-        echo "DB Migration triggered. Exiting watcher."
-      EOT
-    }
-  }
-}
-
 resource "kubernetes_manifest" "migration_job" {
   manifest = {
     apiVersion = "batch/v1"
@@ -101,30 +80,14 @@ resource "kubernetes_manifest" "migration_job" {
             {
               name    = "db-migration-watcher"
               image   = "alpine:latest"
-              command = ["/bin/sh", "-c", "sleep 180 && apk add --no-cache curl && cp /opt/scripts/db-migration-watcher.sh /tmp/db-migration-watcher.sh && chmod +x /tmp/db-migration-watcher.sh && /bin/sh /tmp/db-migration-watcher.sh"]
-              volumeMounts = [
-                {
-                  name      = "script-volume"
-                  mountPath = "/opt/scripts"
-                  readOnly  = true
-                },
-                {
-                  name      = "writable-volume"
-                  mountPath = "/tmp"
-                }
+              command = [
+                "/bin/sh", "-c", <<-EOT
+                  sleep 180 && 
+                  apk add --no-cache curl && 
+                  curl -s -X POST -u admin:"${var.sonarqube_config.sonarqube_current_password}" "http://sonarqube-sonarqube:9000/api/system/migrate_db" && 
+                  echo "✅ DB Migration triggered. Exiting watcher."
+                EOT
               ]
-            }
-          ]
-          volumes = [
-            {
-              name = "script-volume"
-              configMap = {
-                name = "sonarqube-sidecar-script"
-              }
-            },
-            {
-              name     = "writable-volume"
-              emptyDir = {}
             }
           ]
         }
@@ -132,3 +95,4 @@ resource "kubernetes_manifest" "migration_job" {
     }
   }
 }
+
