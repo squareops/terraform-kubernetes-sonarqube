@@ -29,14 +29,14 @@ resource "helm_release" "sonarqube" {
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   values = [
     templatefile("${path.module}/helm/values.yaml", {
-      monitoringPasscode             = var.sonarqube_config.monitoringPasscode != null ? var.sonarqube_config.monitoringPasscode : random_password.monitoringPasscode.result
+      monitoringPasscode             = var.sonarqube_config.monitoringPasscode != "" ? var.sonarqube_config.monitoringPasscode : random_password.monitoringPasscode.result
       hostname                       = var.sonarqube_config.hostname
       volume_size                    = var.sonarqube_config.sonarqube_volume_size
       sonarqube_sc                   = var.sonarqube_config.storage_class_name
       postgresql_enable              = var.sonarqube_config.postgresql_external_server_url != "" ? false : true
       sonarqube_password             = random_password.sonarqube_password.result
       sonarqube_current_password     = var.sonarqube_config.sonarqube_current_password
-      postgresql_password            = var.sonarqube_config.postgresql_current_password != null ? var.sonarqube_config.postgresql_current_password : random_password.postgresql_password.result
+      postgresql_password            = var.sonarqube_config.postgresql_current_password != "" ? var.sonarqube_config.postgresql_current_password : random_password.postgresql_password.result
       postgresql_disk_size           = var.sonarqube_config.postgresql_volume_size
       prometheus_exporter_enable     = var.sonarqube_config.grafana_monitoring_enabled
       postgresql_password_external   = var.sonarqube_config.postgresql_password_external
@@ -58,6 +58,77 @@ resource "helm_release" "sonarqube" {
     content {
       name  = "postgresql.existingSecretPasswordKey"
       value = var.sonarqube_config.postgresql_password_external
+    }
+  }
+}
+resource "kubernetes_manifest" "migration_apply" {
+  manifest = {
+    apiVersion = "v1"
+    kind       = "ConfigMap"
+    metadata = {
+      name      = "sonarqube-sidecar-script"
+      namespace = "sonarqube"
+    }
+    data = {
+      "db-migration-watcher.sh" = <<-EOT
+        #!/bin/bash
+        SONARQUBE_API="http://sonarqube-sonarqube:9000/api/system/migrate_db"
+
+        curl -s -X POST -u admin:"${var.sonarqube_config.sonarqube_current_password}" "$SONARQUBE_API"
+
+        echo "DB Migration triggered. Exiting watcher."
+      EOT
+    }
+  }
+}
+
+resource "kubernetes_manifest" "migration_job" {
+  manifest = {
+    apiVersion = "batch/v1"
+    kind       = "Job"
+    metadata = {
+      name      = "db-migration-watcher-job"
+      namespace = "sonarqube"
+    }
+    spec = {
+      backoffLimit = 4
+      completions  = 1
+      parallelism  = 1
+      template = {
+        spec = {
+          restartPolicy = "Never"
+          containers = [
+            {
+              name    = "db-migration-watcher"
+              image   = "alpine:latest"
+              command = ["/bin/sh", "-c", "sleep 180 && apk add --no-cache curl && cp /opt/scripts/db-migration-watcher.sh /tmp/db-migration-watcher.sh && chmod +x /tmp/db-migration-watcher.sh && /bin/sh /tmp/db-migration-watcher.sh"]
+              volumeMounts = [
+                {
+                  name      = "script-volume"
+                  mountPath = "/opt/scripts"
+                  readOnly  = true
+                },
+                {
+                  name      = "writable-volume"
+                  mountPath = "/tmp"
+                }
+              ]
+            }
+          ]
+          volumes = [
+            {
+              name = "script-volume"
+              configMap = {
+                name = "sonarqube-sidecar-script"
+              }
+            },
+            {
+              name     = "writable-volume"
+              emptyDir = {}
+            }
+          ]
+        }
+      }
     }
   }
 }
