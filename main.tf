@@ -84,7 +84,7 @@ resource "kubernetes_manifest" "migration_job" {
                 "/bin/sh", "-c", <<-EOT
                   sleep 180 &&
                   apk add --no-cache curl &&
-                  curl -s -X POST -u admin:"${var.sonarqube_config.sonarqube_current_password}" "http://${helm_release.sonarqube.name}-${helm_release.sonarqube.chart}:9000/api/system/migrate_db" &&
+                  curl -s -X POST -u admin:"${var.sonarqube_config.sonarqube_current_password}" "http://sonarqube-sonarqube:9000/api/system/migrate_db" &&
                   echo "DB Migration triggered. Exiting watcher."
                 EOT
               ]
