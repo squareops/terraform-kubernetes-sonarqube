@@ -2,11 +2,9 @@ resources:
   limits:
     cpu: 700m
     memory: 6144M
-    ephemeral-storage: 512000M
   requests:
     cpu: 300m
     memory: 2048M
-    ephemeral-storage: 1536M
 
 affinity:
   nodeAffinity:

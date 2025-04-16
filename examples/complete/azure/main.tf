@@ -1,7 +1,7 @@
 locals {
-  name        = "sonarqube"
+  name        = ""
   region      = ""
-  environment = "prod"
+  environment = ""
   additional_tags = {
     Owner      = "organization_name"
     Expires    = "Never"
@@ -11,15 +11,18 @@ locals {
 
 module "sonarqube" {
   source  = "squareops/sonarqube/kubernetes"
-  version = "3.0.1"
+  version = "3.1.0"
   sonarqube_config = {
-    hostname                       = "sonarqube.skaf.squareops.in"
+    hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
-    storage_class_name             = "infra-service-sc"
+    storage_class_name             = "gp2"
     sonarqube_volume_size          = "5Gi"
-    postgresql_volume_size         = "20Gi"
+    postgresql_volume_size         = "10Gi"
     grafana_monitoring_enabled     = false
-    postgresql_password_external   = "admin"
+    monitoringPasscode             = "xxxxxxx"
+    sonarqube_current_password     = "xxxxxxx"     # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
+    postgresql_current_password    = "xxxxxxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
+    postgresql_password_external   = ""
     postgresql_external_server_url = ""
   }
 }
