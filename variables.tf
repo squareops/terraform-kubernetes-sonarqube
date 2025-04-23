@@ -15,7 +15,7 @@ variable "sonarqube_config" {
 
 variable "chart_version" {
   type        = string
-  default     = "10.6.1"
+  default     = "2025.2.0"
   description = "Version of the Jenkins chart that will be used to deploy Jenkins application."
 }
 
