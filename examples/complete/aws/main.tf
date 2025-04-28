@@ -1,7 +1,7 @@
 locals {
-  name        = ""
-  region      = ""
-  environment = ""
+  name        = "test"
+  region      = "ap-south-1"
+  environment = "squareops"
   additional_tags = {
     Owner      = "organization_name"
     Expires    = "Never"
@@ -19,10 +19,13 @@ module "sonarqube" {
     sonarqube_volume_size          = "5Gi"
     postgresql_volume_size         = "10Gi"
     grafana_monitoring_enabled     = false
-    monitoringPasscode             = "xxxxxxx"
-    sonarqube_current_password     = "xxxxxxx"     # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
-    postgresql_current_password    = "xxxxxxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
+    monitoringPasscode             = ""
     postgresql_password_external   = ""
     postgresql_external_server_url = ""
+    sonarqube_password             = ""
+
+    updateExistingSonarqube     = true
+    sonarqube_current_password  = "orWZVlhIXZvD3W4RXA7h" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
+    postgresql_current_password = "ZIMOR6c3joeYJvAyVUnu" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
   }
 }
