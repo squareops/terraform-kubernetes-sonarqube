@@ -1,7 +1,7 @@
 locals {
-  name        = "test"
-  region      = "ap-south-1"
-  environment = "squareops"
+  name        = ""
+  region      = ""
+  environment = ""
   additional_tags = {
     Owner      = "organization_name"
     Expires    = "Never"
@@ -11,7 +11,7 @@ locals {
 
 module "sonarqube" {
   source  = "squareops/sonarqube/kubernetes"
-  version = "3.1.0"
+  version = "3.1.1"
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
@@ -24,8 +24,8 @@ module "sonarqube" {
     postgresql_external_server_url = ""
     sonarqube_password             = ""
 
-    updateExistingSonarqube     = true
-    sonarqube_current_password  = "orWZVlhIXZvD3W4RXA7h" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
-    postgresql_current_password = "ZIMOR6c3joeYJvAyVUnu" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
+    updateExistingSonarqube     = false # if you have existing sonarqube and want to upgrade,then enable it.
+    sonarqube_current_password  = "xxxxx" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
+    postgresql_current_password = "xxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
   }
 }
