@@ -12,13 +12,14 @@ locals {
 module "sonarqube" {
   source  = "squareops/sonarqube/kubernetes"
   version = "3.1.1"
+
   sonarqube_config = {
     hostname                       = "sonarqube.squareops.in"
     values_yaml                    = file("./helm/values.yaml")
     storage_class_name             = "gp2"
     sonarqube_volume_size          = "5Gi"
     postgresql_volume_size         = "10Gi"
-    grafana_monitoring_enabled     = false
+    grafana_monitoring_enabled     = falset
     monitoringPasscode             = ""
     postgresql_password_external   = ""
     postgresql_external_server_url = ""

@@ -38,9 +38,9 @@ resource "helm_release" "sonarqube" {
       volume_size                    = var.sonarqube_config.sonarqube_volume_size
       sonarqube_sc                   = var.sonarqube_config.storage_class_name
       postgresql_enable              = var.sonarqube_config.postgresql_external_server_url != "" ? false : true
-      sonarqube_password             = local.effective_sonarqube_password
-      sonarqube_current_password     = var.sonarqube_config.updateExistingSonarqube == true ? var.sonarqube_config.sonarqube_current_password : "admin"
-      postgresql_password            = local.effective_postgresql_password
+      sonarqube_password             = random_password.sonarqube_password.result
+      sonarqube_current_password     = var.sonarqube_config.sonarqube_current_password
+      postgresql_password            = var.sonarqube_config.postgresql_current_password != "" ? var.sonarqube_config.postgresql_current_password : random_password.postgresql_password.result
       postgresql_disk_size           = var.sonarqube_config.postgresql_volume_size
       prometheus_exporter_enable     = var.sonarqube_config.grafana_monitoring_enabled
       postgresql_external_server_url = var.sonarqube_config.postgresql_external_server_url
@@ -66,7 +66,6 @@ resource "helm_release" "sonarqube" {
   }
 }
 resource "kubernetes_manifest" "migration_job" {
-  count = var.sonarqube_config.updateExistingSonarqube ? 1 : 0
   manifest = {
     apiVersion = "batch/v1"
     kind       = "Job"
