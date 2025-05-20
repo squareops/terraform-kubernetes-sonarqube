@@ -1,6 +1,6 @@
 locals {
-  name        = ""
-  region      = ""
+  name        = "test"
+  region      = "us-east-1"
   environment = ""
   additional_tags = {
     Owner      = "organization_name"
@@ -8,7 +8,6 @@ locals {
     Department = "Engineering"
   }
 }
-
 module "sonarqube" {
   source  = "squareops/sonarqube/kubernetes"
   version = "3.1.1"
@@ -22,10 +21,11 @@ module "sonarqube" {
     monitoringPasscode             = ""
     postgresql_password_external   = ""
     postgresql_external_server_url = ""
-    sonarqube_password             = ""
+    sonarqube_password             = "xxxxx"
 
     updateExistingSonarqube     = false # if you have existing sonarqube and want to upgrade,then enable it.
-    sonarqube_current_password  = "xxxxx" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
+    updateExistingSonarqubePassword  = false #if you want ti update password,enable it and pass sonarqube_current_password(old),sonarqube_password(new)
+    sonarqube_current_password  = "xxxxxx" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
     postgresql_current_password = "xxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
   }
 }
