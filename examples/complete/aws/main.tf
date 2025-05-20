@@ -18,7 +18,6 @@ module "sonarqube" {
     sonarqube_volume_size          = "5Gi"
     postgresql_volume_size         = "10Gi"
     grafana_monitoring_enabled     = false
-
     monitoringPasscode             = "xxxxxxx"
     sonarqube_current_password     = "xxxxxxx"     # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
     postgresql_current_password    = "xxxxxxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
