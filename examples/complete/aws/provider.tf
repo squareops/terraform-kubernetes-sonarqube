@@ -6,11 +6,11 @@ provider "aws" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = "test-divyanshu"
+  name = ""
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = "test-divyanshu"
+  name = ""
 }
 
 

@@ -1,6 +1,6 @@
 locals {
-  name        = "test"
-  region      = "us-east-1"
+  name        = ""
+  region      = ""
   environment = ""
   additional_tags = {
     Owner      = "organization_name"
@@ -24,8 +24,8 @@ module "sonarqube" {
     sonarqube_password             = "xxxxx"
 
     updateExistingSonarqube     = false # if you have existing sonarqube and want to upgrade,then enable it.
-    updateExistingSonarqubePassword  = false #if you want ti update password,enable it and pass sonarqube_current_password(old),sonarqube_password(new)
-    sonarqube_current_password  = "xxxxxx" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-postgresql
-    postgresql_current_password = "xxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password ##Secret name=sonarqube-sonarqube-admin-password
+    updateExistingSonarqubePassword  = false #if you want to update password,enable it and pass sonarqube_current_password(old),sonarqube_password(new)
+    sonarqube_current_password  = "xxxxxx" # if you upgrade sonarqube then you have to provide your previous sonarqube password ##Secret name=sonarqube-sonarqube-admin-password
+    postgresql_current_password = "xxxxxxx" # if you upgrade sonarqube then you have to provide your previous postgresql password  ##Secret name=sonarqube-postgresql
   }
 }
